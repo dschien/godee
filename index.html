@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head>
+		<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --><!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]--><!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]--><!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]--><!-- Consider adding a manifest.appcache: h5bp.com/d/Offline --><!--[if gt IE 8]><!--><!--<![endif]-->
+		<meta charset="utf-8">
+		<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+		More info: h5bp.com/i/378 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<!-- Mobile viewport optimized: h5bp.com/viewport -->
+		<meta name="viewport" content="width=device-width">
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+		<link rel="stylesheet" href="css/style.css">
+		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips --><!-- All JavaScript at the bottom, except this Modernizr build.
+		Modernizr enables HTML5 elements & feature detects for optimal performance.
+		Create your own custom Modernizr build: www.modernizr.com/download/ -->
+		<script src="js/libs/modernizr-2.5.3.min.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			// Load the Visualization API and the piechart package.
+			google.load('visualization', '1.0', {
+				'packages' : ['corechart']
+			});
+
+			// Set a callback to run when the Google Visualization API is loaded.
+			// google.setOnLoadCallback(drawChart);
+
+			// Callback that creates and populates a data table,
+			// instantiates the pie chart, passes in the data and
+			// draws it.
+
+			function drawChart(e_serv, e_network, e_acc_net, e_user) {
+
+				// Create the data table.
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Component');
+				data.addColumn('number', 'Energy');
+				data.addRows([['Server', e_serv], ['Network', e_network], ['Access Network', e_acc_net], ['User Device', e_user]]);
+
+				// Set chart options
+				var options = {
+					'title' : 'Energy of Components',
+					'width' : 400,
+					'height' : 300
+				};
+
+				// Instantiate and draw our chart, passing in some options.
+				var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			function calc() {
+
+				var textField = document.getElementById('time')
+				var duration = 60
+				if(textField.value != "")
+					duration = textField.value
+				var deviceType = document.getElementById('device').value
+				var p_device = 0
+				switch(deviceType) {
+					case 'phone':
+						p_device = 1
+						break;
+					case 'tablet':
+						p_device = 3
+						break;
+					case 'laptop':
+						p_device = 28
+						break;
+					case 'pc':
+						p_device = 58
+						break;
+					default:
+						// default is laptop
+						p_device = 28
+				}
+
+				var connectionType = document.getElementById('connection').value
+				var e_acc_net = 0
+				switch(connectionType) {
+					case 'dsl':
+						e_acc_net = 5 * duration
+						break;
+					case 'mobile':
+						e_acc_net = 70
+						break;
+					default:
+						// default is dsl
+						e_acc_net = 5 * duration
+				}
+
+				var e_serv = 104
+				var e_network = 6
+				var e_user = p_device * duration
+
+				var e_total = e_serv + e_network + e_acc_net + e_user
+				drawChart(e_serv, e_network, e_acc_net, e_user)
+				// alert('total energy :' + e_total)
+
+			}
+		</script>
+	</head>
+	<body>
+		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+		chromium.org/developers/how-tos/chrome-frame-getting-started --><!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+		<header></header>
+		<div role="main">
+			<br>
+			Device
+			<br>
+			<select name="device" id='device'>
+				<option>phone</option>
+				<option>tablet</option>
+				<option>laptop</option>
+				<option>pc</option>
+			</select>
+			<br>
+			<br>
+			Connection
+			<br>
+			<select name="connection" id='connection'>
+				<option>dsl</option>
+				<option>mobile</option>
+			</select>
+			<br>
+			<br>
+			Time
+			<br>
+			<input name="time" value="45" id='time'>
+			<br>
+			<br>
+			<button value="calc" name="calculate" onclick="calc()">
+				Calc
+			</button>
+			<br>
+			<br>
+		</div>
+		<!--Div that will hold the pie chart-->
+		<div id="chart_div"></div>
+		<footer></footer><!-- JavaScript at the bottom for fast page loading --><!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+		<!-- scripts concatenated and minified via build script -->
+		<script src="js/plugins.js"></script>
+		<script src="js/script.js"></script><!-- end scripts --><!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+		mathiasbynens.be/notes/async-analytics-snippet -->
+		<script>
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
+				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g, s)
+			}(document, 'script'));
+
+		</script>
+	</body>
+</html>
