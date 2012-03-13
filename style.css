@@ -1,5 +1,5 @@
 body{
-	
+	font-family: 'PT Mono', sans-serif;
 }
 /* Basic layout */
 #frame{
@@ -15,6 +15,8 @@ body{
 	float:left;
 	width:350px;
 	padding:20px;
+	border-right: 1px dotted #333;
+	padding-top:0px;
 }
 #column_right{
 	position:relative;
@@ -29,3 +31,6 @@ body{
 	padding:20px;
 }
 /* Typography */
+big{
+	font-size:145px;
+}
