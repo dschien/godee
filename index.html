@@ -6,7 +6,8 @@
 		<!-- Use the .htaccess and remove these lines to avoid edge case issues.
 		More info: h5bp.com/i/378 -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title></title>
+		<link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+		<title>Guardian energy calculator</title>
 		<meta name="description" content="">
 		<!-- Mobile viewport optimized: h5bp.com/viewport -->
 		<meta name="viewport" content="width=device-width">
@@ -105,8 +106,12 @@
 	<body>
 		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
 		chromium.org/developers/how-tos/chrome-frame-getting-started --><!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-		<header></header>
-		<div role="main">
+		<div id="frame">
+		<div id="header">
+			<h1>THE GUARDIAN ENERGY</h1>
+			<p><a href="about.html">ABOUT</a></p>
+		</div>
+		<div id="column_left">
 			<br>
 			Device
 			<br>
@@ -138,7 +143,10 @@
 			<br>
 		</div>
 		<!--Div that will hold the pie chart-->
-		<div id="chart_div"></div>
+		<div id="column_right">
+			<div id="chart_div"></div>
+			</div>
+		</div>
 		<footer></footer><!-- JavaScript at the bottom for fast page loading --><!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
