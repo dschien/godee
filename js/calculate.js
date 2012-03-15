@@ -32,11 +32,11 @@
 
 	function calc() {
 
-		var textField = document.getElementById('time')
+		var textField = document.getElementById('amount')
 		var duration = 60
 		if(textField.value != "")
-			duration = textField.value
-		var deviceType = document.getElementById('device').value
+			duration = textField.value*60
+		var deviceType = document.getElementById('device_selected').value
 		var p_device = 0
 		switch(deviceType) {
 			case 'phone':
@@ -56,7 +56,7 @@
 				p_device = 28
 		}
 
-		var connectionType = document.getElementById('connection').value
+		var connectionType = document.getElementById('connection_selected').value
 		var e_acc_net = 0
 		switch(connectionType) {
 			case 'dsl':
@@ -73,8 +73,10 @@
 		var e_serv = 104
 		var e_network = 6
 		var e_user = p_device * duration
-
 		var e_total = e_serv + e_network + e_acc_net + e_user
+		// convert to watthour
+		e_total *= 0.000277777778
+		e_total = Math.round(e_total*100)/100
 		document.getElementById('bignr').innerHTML = "<h1><big>"+ e_total +"</big> wh</h1>"
 		drawChart(e_serv, e_network, e_acc_net, e_user)
 		// alert('total energy :' + e_total)

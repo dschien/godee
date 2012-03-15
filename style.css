@@ -1,5 +1,6 @@
 body{
 	font-family: 'PT Mono', sans-serif;
+	background-color:#fff;
 }
 /* Basic layout */
 #frame{
@@ -13,7 +14,7 @@ body{
 #column_left{
 	position:relative;
 	float:left;
-	width:350px;
+	width:380px;
 	padding:20px;
 	border-right: 1px dotted #333;
 	padding-top:0px;
@@ -30,7 +31,41 @@ body{
 	width:750px;
 	padding:20px;
 }
+/*Items*/
+#selectable .selected { background: #333; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.device{
+	float:left;
+	width:60px;
+	height:60px;
+	padding:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	background-color: #0776A0;
+	color:white;
+}
+#selectable2 .selected { background: #333; color: white; }
+#selectable2 { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.connection{
+	float:left;
+	width:60px;
+	height:60px;
+	padding:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	background-color: #0776A0;
+	color:white;
+}
+
 /* Typography */
 big{
 	font-size:145px;
+}
+#about p{
+	font-size:28px;
+}
+a{
+	color: #0776A0;
+	text-decoration: none;
+	border-bottom:1px dotted #333;
 }
